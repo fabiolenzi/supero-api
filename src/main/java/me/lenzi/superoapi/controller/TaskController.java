@@ -17,12 +17,14 @@ public class TaskController {
     TaskRepository taskRepository;
 
     // Get All Notes
+    @CrossOrigin
     @GetMapping("/tasks")
     public List<Task> getAllNotes() {
         return taskRepository.findAll();
     }
 
     // Create a new Note
+    @CrossOrigin
     @PostMapping("/tasks")
     public Task createNote(@Valid @RequestBody Task task) {
 
@@ -31,6 +33,7 @@ public class TaskController {
     }
 
     // Get a Single Note
+    @CrossOrigin
     @GetMapping("/tasks/{id}")
     public Task getNoteById(@PathVariable(value = "id") Long taskId) throws TaskNotFoundException {
         return taskRepository.findById(taskId)
@@ -38,6 +41,7 @@ public class TaskController {
     }
 
     // Update a Note
+    @CrossOrigin
     @PutMapping("/tasks/{id}")
     public Task updateNote(@PathVariable(value = "id") Long taskId,
                            @Valid @RequestBody Task taskDetails) throws TaskNotFoundException {
@@ -62,6 +66,7 @@ public class TaskController {
     }
 
     // Delete a Note
+    @CrossOrigin
     @DeleteMapping("/tasks/{id}")
     public ResponseEntity<?> deleteTask(@PathVariable(value = "id") Long taskId) throws TaskNotFoundException {
         Task task = taskRepository.findById(taskId)
